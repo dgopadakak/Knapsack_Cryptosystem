@@ -31,6 +31,7 @@ class KnapsackCryptosystem:
                 if i[j] == "1":
                     summ += self.public_key[j]
             encrypted_message.append(summ)
+        print(encrypted_message)
         return encrypted_message
 
     def prepare_for_encrypt(self, message_text):
@@ -41,6 +42,7 @@ class KnapsackCryptosystem:
         while len(binary_message) != 0:
             splitted_binary_message.append(binary_message[:len(self.private_key)])
             binary_message = binary_message[len(self.private_key):len(binary_message)]
+        print(splitted_binary_message)
         return splitted_binary_message
 
     def decrypt(self, encrypted_message):
@@ -60,6 +62,7 @@ class KnapsackCryptosystem:
                 else:
                     binary = "0" + binary
             splitted_binary_message.append(binary)
+        print(splitted_binary_message)
         return self.after_decryption(splitted_binary_message)
 
     def after_decryption(self, splitted_binary_message):
@@ -73,6 +76,7 @@ class KnapsackCryptosystem:
             temp = binary_message[i:i + 8]
             num = int(temp, 2)
             message_text += chr(num)
+        print(message_text)
         return message_text
 
 
@@ -80,7 +84,7 @@ k = KnapsackCryptosystem([1, 2, 4, 10, 20, 40], 110, 31)
 k.print_private_key()
 k.print_public_key()
 print()
-#print(k.prepare_for_encrypt("Hello World!"))
-encrypted_mes = k.encrypt("Hello World!")
-print(encrypted_mes)
-print(k.decrypt(encrypted_mes))
+s = "Hello World!"
+print(s)
+encrypted_mes = k.encrypt(s)
+k.decrypt(encrypted_mes)
